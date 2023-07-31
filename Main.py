@@ -13,10 +13,33 @@ def reset():
     inputBox.focus()
 
 def calculate():
+    #Getting variables from user
+    valueToConvert = float(inputBox.get())
+    inputUnit = inputValue.get()
+    outputUnit = outputValue.get()
     
+    # list of the required combination of the conversion factors  
+    conversionFactors = [inputUnit in lengthUnits and outputUnit in lengthUnits,  
+    inputUnit in weightUnits and outputUnit in weightUnits,  
+    inputUnit in temperatureUnits and outputUnit in temperatureUnits,  
+    inputUnit in volumeUnits and outputUnit in volumeUnits]  
     
-    print("Hi")
+    if any(conversionFactors): # If both the units are of same type, perform the conversion  
+            if inputUnit == "celsius" and outputUnit == "fahrenheit":  
+                outputBox.delete(0, END)  
+                outputBox.insert(0, (valueToConvert * 1.8) + 32)  
+                # Temperature conversions use different method to convert
+            elif inputUnit == "fahrenheit" and outputUnit == "celsius":  
+                outputBox.delete(0, END)  
+                outputBox.insert(0, (valueToConvert - 32) * (5/9))  
+            else:  
+                outputBox.delete(0, END)  
+                outputBox.insert(0, round(valueToConvert * unitDict[inputUnit] / unitDict[outputUnit], 5))  
     
+    else:  
+        # displaying error if units are of different types  
+        outputBox.delete(0, END)  
+        outputBox.insert(0, "ERROR, invalid type")      
 
 if __name__ == "__main__": 
     # dictionary of conversion factors  
@@ -41,16 +64,16 @@ if __name__ == "__main__":
     }  
      
     #list of units
-    length_units = [  
+    lengthUnits = [  
         "millimeter", "centimeter", "meter", "kilometer", "foot", "mile", "yard", "inch"  
         ]  
-    temperature_units = [  
+    temperatureUnits = [  
         "celsius", "fahrenheit"  
     ]  
-    volume_units = [  
+    volumeUnits = [  
         "litre", "millilitre", "gallon"     
     ]  
-    weight_units = [  
+    weightUnits = [  
         "gram", "kilogram", "milligram", "ton", "pound", "ounce"  
     ]  
     
@@ -69,7 +92,7 @@ if __name__ == "__main__":
         "fahrenheit", 
         "litre",  
         "millilitre",  
-        "gallon"     
+        "gallon",     
         "gram",  
         "kilogram",  
         "milligram",  
