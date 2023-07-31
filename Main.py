@@ -1,14 +1,60 @@
 from tkinter import *
 
+def reset():
+    #Clears drop down menus
+    inputValue.set(SELECTIONS[0])  
+    outputValue.set(SELECTIONS[0])
+    
+    #Clears text boxes  
+    inputBox.delete(0,END)
+    outputBox.delete(0,END)
+    
+    #Sets cursor on inputBox
+    inputBox.focus()
+
 def calculate():
+    
+    
     print("Hi")
     
-def reset():
-    print("Woah")
 
-
-if __name__ == "__main__":  
-    # creating the list of options for selection menu  
+if __name__ == "__main__": 
+    # dictionary of conversion factors  
+    unitDict = {  
+        "millimeter" : 0.001,  
+        "centimeter" : 0.01,  
+        "meter" : 1.0,  
+        "kilometer" : 1000.0,  
+        "foot" : 0.3048,  
+        "mile" : 1609.344,  
+        "yard" : 0.9144,  
+        "inch" : 0.0254,  
+        "litre" :  1.0,  
+        "millilitre" : 0.001,  
+        "gallon" : 3.785,  
+        "gram" : 1.0,  
+        "kilogram" : 1000.0,  
+        "milligram" : 0.001,  
+        "ton" : 1000000.0,  
+        "pound" : 453.592,  
+        "ounce" : 28.3495  
+    }  
+     
+    #list of units
+    length_units = [  
+        "millimeter", "centimeter", "meter", "kilometer", "foot", "mile", "yard", "inch"  
+        ]  
+    temperature_units = [  
+        "celsius", "fahrenheit"  
+    ]  
+    volume_units = [  
+        "litre", "millilitre", "gallon"     
+    ]  
+    weight_units = [  
+        "gram", "kilogram", "milligram", "ton", "pound", "ounce"  
+    ]  
+    
+    # list of options for selection menu  
     SELECTIONS = [  
         "Select Unit",  
         "millimeter",  
@@ -32,8 +78,6 @@ if __name__ == "__main__":
     ]  
 
     root = Tk() #create a root widget/ main window
-    
-
     root.title("Unit Conversion Calculator")
     root.resizable(0,0) #makes it unresizable
     root.geometry("500x450")  # (width x height) + x + y axis, default position on the screen on startup
@@ -44,7 +88,7 @@ if __name__ == "__main__":
     inputValue.set(SELECTIONS[0])  
     outputValue.set(SELECTIONS[0])  
 
-    calculatorLabel = Label(root, text="UNIT CONVERSION CALCULATOR", font = ("arial black", 19), fg = "#6E6E6E" )
+    calculatorLabel = Label(root, text="UNIT CONVERSION CALCULATOR", font = ("roboto", 19) )
     calculatorLabel.pack(pady = 30)
 
     #Input Area
@@ -54,14 +98,12 @@ if __name__ == "__main__":
     inputLabel = Label(inputFrame, text="From:", bg="#6E6E6E", fg = "#ffffff", font = 12)
     inputLabel.pack(side='left', pady= 30)
 
-    # adding the option menus to the main window  
-    input_menu = OptionMenu(inputFrame,  inputValue, *SELECTIONS  )  
-    input_menu.pack(side="right")
+    # Option menu  
+    inputMenu = OptionMenu(inputFrame,  inputValue, *SELECTIONS  )  
+    inputMenu.pack(side="right")
     
     inputBox = Entry(inputFrame, bd=3)
     inputBox.pack(side='right')
-
-
     
     #Output Area
     outputFrame = Frame(root)
@@ -77,7 +119,7 @@ if __name__ == "__main__":
     outputBox = Entry(outputFrame, bd=3)
     outputBox.pack(side='right')
             
-    calculateButton = Button(root, text = "CALCULATE", command = calculate)
+    calculateButton = Button(root, text = "CALCULATE", command = calculate, fg="#ffffff", bg="#5e5e5e")
     calculateButton.pack()
     
     resetButton = Button(root, text = "RESET", command = reset, bg= "red")
