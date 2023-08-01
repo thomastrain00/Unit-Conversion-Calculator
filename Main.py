@@ -103,7 +103,7 @@ if __name__ == "__main__":
     root = Tk() #create a root widget/ main window
     root.title("Unit Conversion Calculator")
     root.resizable(0,0) #makes it unresizable
-    root.geometry("500x450")  # (width x height) + x + y axis, default position on the screen on startup
+    root.geometry("500x450+600+250")  # (width x height) + x + y axis, default position on the screen on startup
     
     #Setting Default Values
     inputValue = StringVar()
