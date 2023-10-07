@@ -52,8 +52,8 @@ if __name__ == "__main__":
         "mile" : 1609.344,  
         "yard" : 0.9144,  
         "inch" : 0.0254,  
-        "litre" :  1.0,  
-        "millilitre" : 0.001,  
+        "liter" :  1.0,  
+        "milliliter" : 0.001,  
         "gallon" : 3.785,  
         "gram" : 1.0,  
         "kilogram" : 1000.0,  
@@ -71,7 +71,7 @@ if __name__ == "__main__":
         "celsius", "fahrenheit"  
     ]  
     volumeUnits = [  
-        "litre", "millilitre", "gallon"     
+        "liter", "milliliter", "gallon"     
     ]  
     weightUnits = [  
         "gram", "kilogram", "milligram", "ton", "pound", "ounce"  
@@ -90,8 +90,8 @@ if __name__ == "__main__":
         "inch",  
         "celsius",  
         "fahrenheit", 
-        "litre",  
-        "millilitre",  
+        "liter",  
+        "milliliter",  
         "gallon",     
         "gram",  
         "kilogram",  
