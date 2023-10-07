@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 
 def reset():
     #Clears drop down menus
@@ -13,8 +14,18 @@ def reset():
     inputBox.focus()
 
 def calculate():
-    #Getting variables from user
-    valueToConvert = float(inputBox.get())
+    # Get input value from user
+    valueToConvert = inputBox.get()
+    
+    # Verify that the data is valid (i.e. an integer/decimal)
+    if not valueToConvert.replace(".", "").isnumeric():
+        messagebox.showerror(
+            title="ValueError", 
+            message="The value you entered was not valid. Try again.")
+        return
+    valueToConvert = float(valueToConvert)
+
+    # Get selected units
     inputUnit = inputValue.get()
     outputUnit = outputValue.get()
     
