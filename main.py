@@ -26,9 +26,27 @@ def calculate():
     valueToConvert = float(valueToConvert)
 
     # Get selected units
+    emptyUnit = "Select Unit"
     inputUnit = inputValue.get()
     outputUnit = outputValue.get()
-    
+
+    # Verify that the units were selected
+    if inputUnit == emptyUnit or outputUnit == emptyUnit:
+        if inputUnit == emptyUnit and outputUnit != emptyUnit:
+            messagebox.showerror(
+                title="UnitError", 
+                message="The unit for input was not selected. Try again.")
+        elif inputUnit != emptyUnit and outputUnit == emptyUnit:
+            messagebox.showerror(
+                title="UnitError", 
+                message="The unit for output was not selected. Try again.")
+        else:
+            messagebox.showerror(
+                title="UnitError", 
+                message="The units for input and output were not selected. Try again.")
+        return
+   
+
     # list of the required combination of the conversion factors  
     conversionFactors = [inputUnit in lengthUnits and outputUnit in lengthUnits,  
     inputUnit in weightUnits and outputUnit in weightUnits,  
